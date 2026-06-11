@@ -140,6 +140,8 @@
   .painel-interacoes {
     order: 2;
     position: relative;
+    right: auto;
+    bottom: auto;
     z-index: var(--camada-hud);
     width: 100%;
     max-height: none;
