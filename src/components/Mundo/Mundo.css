@@ -148,7 +148,8 @@
 
 @media (max-width: 860px) {
   .mundo {
-    height: clamp(250px, 42svh, 340px);
+    order: 3;
+    height: clamp(390px, 58svh, 560px);
     min-height: auto;
     align-items: flex-start;
     padding: 0;

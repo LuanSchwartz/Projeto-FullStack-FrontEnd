@@ -82,6 +82,7 @@
 
 @media (max-width: 860px) {
   .barra-superior {
+    order: 1;
     position: relative;
     top: auto;
     left: auto;

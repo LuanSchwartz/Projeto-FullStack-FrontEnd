@@ -22,10 +22,18 @@
 }
 
 .painel-interacoes__topo {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--cor-texto);
+  cursor: default;
 }
 
 .painel-interacoes__topo strong {
@@ -39,6 +47,15 @@
   color: #166534;
   font-size: 0.8rem;
   font-weight: 800;
+}
+
+.painel-interacoes__alternador {
+  display: none;
+}
+
+.painel-interacoes__conteudo {
+  display: grid;
+  gap: 12px;
 }
 
 .painel-interacoes__grade {
@@ -121,6 +138,7 @@
 
 @media (max-width: 860px) {
   .painel-interacoes {
+    order: 2;
     position: relative;
     z-index: var(--camada-hud);
     width: 100%;
@@ -131,6 +149,11 @@
     overflow: hidden;
   }
 
+  .painel-interacoes__topo {
+    min-height: 34px;
+    cursor: pointer;
+  }
+
   .painel-interacoes__topo strong {
     font-size: 0.9rem;
   }
@@ -138,6 +161,43 @@
   .painel-interacoes__topo span {
     padding: 4px 7px;
     font-size: 0.74rem;
+  }
+
+  .painel-interacoes__alternador {
+    display: block;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+
+  .painel-interacoes__alternador::before,
+  .painel-interacoes__alternador::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    right: 3px;
+    top: 8px;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--cor-texto-suave);
+  }
+
+  .painel-interacoes__alternador::after {
+    transform: rotate(90deg);
+    transition: transform 160ms ease;
+  }
+
+  .painel-interacoes--aberto .painel-interacoes__alternador::after {
+    transform: rotate(0deg);
+  }
+
+  .painel-interacoes__conteudo {
+    gap: 7px;
+  }
+
+  .painel-interacoes--fechado .painel-interacoes__conteudo {
+    display: none;
   }
 
   .painel-interacoes__grade {

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import type { TipoInteracao } from "@/types/jogo";
 import { emojisDisponiveis, mensagensRapidas } from "@/utils/constantesJogo";
@@ -28,48 +29,61 @@ export function PainelInteracoes({
   enviarEmoji,
   enviarMensagem
 }: PropriedadesPainelInteracoes) {
+  const [aberto, definirAberto] = useState(false);
+
   return (
-    <aside className="painel-interacoes" aria-label="Interacoes entre jogadores">
-      <div className="painel-interacoes__topo">
+    <aside
+      className={`painel-interacoes ${aberto ? "painel-interacoes--aberto" : "painel-interacoes--fechado"}`}
+      aria-label="Interacoes entre jogadores"
+    >
+      <button
+        className="painel-interacoes__topo"
+        type="button"
+        aria-expanded={aberto}
+        onClick={() => definirAberto((valorAtual) => !valorAtual)}
+      >
         <strong>Interações</strong>
         <span>{totalProximos} perto</span>
-      </div>
+        <span className="painel-interacoes__alternador" aria-hidden="true" />
+      </button>
 
-      <div className="painel-interacoes__grade">
-        {interacoes.map((interacao) => {
-          const desabilitado = Boolean(interacao.exigeProximidade && totalProximos === 0);
+      <div className="painel-interacoes__conteudo">
+        <div className="painel-interacoes__grade">
+          {interacoes.map((interacao) => {
+            const desabilitado = Boolean(interacao.exigeProximidade && totalProximos === 0);
 
-          return (
-            <motion.button
-              key={interacao.tipo}
-              className="painel-interacoes__botao"
-              type="button"
-              whileTap={{ scale: desabilitado ? 1 : 0.96 }}
-              disabled={desabilitado}
-              onClick={() => enviarInteracao(interacao.tipo)}
-              title={desabilitado ? "Aproxime-se de alguem" : interacao.texto}
-            >
-              <span className="painel-interacoes__icone">{interacao.icone}</span>
-              <span className="painel-interacoes__texto">{interacao.texto}</span>
-            </motion.button>
-          );
-        })}
-      </div>
+            return (
+              <motion.button
+                key={interacao.tipo}
+                className="painel-interacoes__botao"
+                type="button"
+                whileTap={{ scale: desabilitado ? 1 : 0.96 }}
+                disabled={desabilitado}
+                onClick={() => enviarInteracao(interacao.tipo)}
+                title={desabilitado ? "Aproxime-se de alguem" : interacao.texto}
+              >
+                <span className="painel-interacoes__icone">{interacao.icone}</span>
+                <span className="painel-interacoes__texto">{interacao.texto}</span>
+              </motion.button>
+            );
+          })}
+        </div>
 
-      <div className="painel-interacoes__linha" aria-label="Emojis rapidos">
-        {emojisDisponiveis.map((emoji) => (
-          <button key={emoji} type="button" onClick={() => enviarEmoji(emoji)} aria-label={`Enviar ${emoji}`}>
-            {emoji}
-          </button>
-        ))}
-      </div>
+        <div className="painel-interacoes__linha" aria-label="Emojis rapidos">
+          {emojisDisponiveis.map((emoji) => (
+            <button key={emoji} type="button" onClick={() => enviarEmoji(emoji)} aria-label={`Enviar ${emoji}`}>
+              {emoji}
+            </button>
+          ))}
+        </div>
 
-      <div className="painel-interacoes__mensagens">
-        {mensagensRapidas.map((mensagem) => (
-          <button key={mensagem} type="button" onClick={() => enviarMensagem(mensagem)}>
-            {mensagem}
-          </button>
-        ))}
+        <div className="painel-interacoes__mensagens">
+          {mensagensRapidas.map((mensagem) => (
+            <button key={mensagem} type="button" onClick={() => enviarMensagem(mensagem)}>
+              {mensagem}
+            </button>
+          ))}
+        </div>
       </div>
     </aside>
   );

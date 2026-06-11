@@ -45,51 +45,59 @@ export function ControleMovimento({ atualizarMovimento }: PropriedadesControleMo
         <button
           className="controle-movimento__botao controle-movimento__botao--cima"
           type="button"
+          data-icone="↑"
           aria-label="Mover para cima"
           draggable={false}
+          onContextMenu={(evento) => evento.preventDefault()}
+          onMouseDown={(evento) => evento.preventDefault()}
+          onTouchStart={(evento) => evento.preventDefault()}
           onPointerDown={(evento) => iniciarMovimento(evento, "cima")}
           onPointerUp={pararMovimento}
           onPointerCancel={pararMovimento}
           onLostPointerCapture={() => atualizarMovimento(movimentoInicial)}
-        >
-          ↑
-        </button>
+        />
         <button
           className="controle-movimento__botao controle-movimento__botao--esquerda"
           type="button"
+          data-icone="←"
           aria-label="Mover para esquerda"
           draggable={false}
+          onContextMenu={(evento) => evento.preventDefault()}
+          onMouseDown={(evento) => evento.preventDefault()}
+          onTouchStart={(evento) => evento.preventDefault()}
           onPointerDown={(evento) => iniciarMovimento(evento, "esquerda")}
           onPointerUp={pararMovimento}
           onPointerCancel={pararMovimento}
           onLostPointerCapture={() => atualizarMovimento(movimentoInicial)}
-        >
-          ←
-        </button>
+        />
         <button
           className="controle-movimento__botao controle-movimento__botao--baixo"
           type="button"
+          data-icone="↓"
           aria-label="Mover para baixo"
           draggable={false}
+          onContextMenu={(evento) => evento.preventDefault()}
+          onMouseDown={(evento) => evento.preventDefault()}
+          onTouchStart={(evento) => evento.preventDefault()}
           onPointerDown={(evento) => iniciarMovimento(evento, "baixo")}
           onPointerUp={pararMovimento}
           onPointerCancel={pararMovimento}
           onLostPointerCapture={() => atualizarMovimento(movimentoInicial)}
-        >
-          ↓
-        </button>
+        />
         <button
           className="controle-movimento__botao controle-movimento__botao--direita"
           type="button"
+          data-icone="→"
           aria-label="Mover para direita"
           draggable={false}
+          onContextMenu={(evento) => evento.preventDefault()}
+          onMouseDown={(evento) => evento.preventDefault()}
+          onTouchStart={(evento) => evento.preventDefault()}
           onPointerDown={(evento) => iniciarMovimento(evento, "direita")}
           onPointerUp={pararMovimento}
           onPointerCancel={pararMovimento}
           onLostPointerCapture={() => atualizarMovimento(movimentoInicial)}
-        >
-          →
-        </button>
+        />
       </div>
     </aside>
   );
