@@ -11,30 +11,6 @@
   -webkit-touch-callout: none;
 }
 
-.controle-movimento__atalhos {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 5px 10px;
-  min-width: 210px;
-  padding: 12px;
-  border: 1px solid rgba(217, 222, 231, 0.92);
-  border-radius: var(--raio-medio);
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: var(--sombra-controle);
-  backdrop-filter: blur(14px);
-}
-
-.controle-movimento__atalhos strong {
-  color: var(--cor-texto);
-  font-size: 0.82rem;
-}
-
-.controle-movimento__atalhos span {
-  color: var(--cor-texto-suave);
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
 .controle-movimento__direcional {
   display: none;
   grid-template-columns: repeat(3, 48px);
@@ -119,10 +95,6 @@
     transform: none;
     width: 100%;
     justify-content: center;
-  }
-
-  .controle-movimento__atalhos {
-    display: none !important;
   }
 
   .controle-movimento__direcional {

@@ -34,13 +34,6 @@ export function ControleMovimento({ atualizarMovimento }: PropriedadesControleMo
 
   return (
     <aside className="controle-movimento" aria-label="Controles de movimento">
-      <div className="controle-movimento__atalhos">
-        <strong>Desktop</strong>
-        <span>WASD ou setas</span>
-        <strong>Mobile</strong>
-        <span>controles na tela</span>
-      </div>
-
       <div className="controle-movimento__direcional" onContextMenu={(evento) => evento.preventDefault()}>
         <button
           className="controle-movimento__botao controle-movimento__botao--cima"
