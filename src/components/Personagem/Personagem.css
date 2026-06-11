@@ -1,0 +1,278 @@
+.personagem {
+  position: absolute;
+  width: 96px;
+  height: 142px;
+  transform: translate(-50%, -78%);
+  transform-origin: center bottom;
+  pointer-events: none;
+  will-change: left, top, transform;
+}
+
+.personagem__nome,
+.personagem__mensagem,
+.personagem__interacao {
+  position: absolute;
+  left: 50%;
+  max-width: 160px;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.personagem__nome {
+  bottom: 98px;
+  min-width: 58px;
+  padding: 5px 9px;
+  border: 1px solid rgba(217, 222, 231, 0.92);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--cor-texto);
+  font-size: 0.78rem;
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 8px 18px rgba(17, 24, 39, 0.1);
+}
+
+.personagem__mensagem {
+  bottom: 128px;
+  padding: 7px 10px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  background: #ffffff;
+  color: var(--cor-texto);
+  font-size: 0.82rem;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.12);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.personagem__interacao {
+  bottom: 78px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(17, 24, 39, 0.84);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: aparecerBalao 180ms ease both;
+}
+
+.personagem--local .personagem__nome {
+  border-color: rgba(37, 99, 235, 0.42);
+  animation: destacarLocal 2200ms ease-in-out infinite;
+}
+
+.avatar-personagem {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  overflow: visible;
+  transform: translateX(-50%);
+  will-change: transform;
+}
+
+.avatar-personagem__direcao,
+.avatar-personagem__silhueta,
+.avatar-personagem__corpo,
+.avatar-personagem__cabeca,
+.avatar-personagem__braco,
+.avatar-personagem__pernas,
+.avatar-personagem__perna,
+.avatar-personagem__coracao,
+.avatar-personagem__sombra {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.avatar-personagem__direcao {
+  transform-box: view-box;
+  transition: transform 180ms ease;
+}
+
+.avatar-personagem--direcao-esquerda .avatar-personagem__direcao {
+  transform: scaleX(-1);
+}
+
+.avatar-personagem__braco--esquerdo {
+  transform-origin: 82% 16%;
+}
+
+.avatar-personagem__braco--direito {
+  transform-origin: 18% 16%;
+}
+
+.avatar-personagem__perna {
+  transform-origin: 50% 10%;
+}
+
+.avatar-personagem__coracao {
+  opacity: 0;
+  transform-origin: 50% 75%;
+}
+
+.avatar-personagem--local .avatar-personagem__sombra {
+  fill: var(--cor-primaria);
+  opacity: 0.18;
+}
+
+.avatar-personagem--parado .avatar-personagem__silhueta {
+  animation: respirarPersonagem 2200ms ease-in-out infinite;
+}
+
+.avatar-personagem--parado .avatar-personagem__cabeca {
+  animation: cabecaParada 2200ms ease-in-out infinite;
+}
+
+.avatar-personagem--parado .avatar-personagem__sombra {
+  animation: respirarSombra 2200ms ease-in-out infinite;
+}
+
+.avatar-personagem--andando .avatar-personagem__silhueta {
+  animation: caminharPersonagem 520ms ease-in-out infinite;
+}
+
+.avatar-personagem--andando .avatar-personagem__sombra {
+  animation: sombraCaminhando 520ms ease-in-out infinite;
+}
+
+.avatar-personagem--andando .avatar-personagem__cabeca {
+  animation: cabecaCaminhando 520ms ease-in-out infinite;
+}
+
+.avatar-personagem--andando .avatar-personagem__braco--esquerdo {
+  animation: balancarBracoEsquerdo 520ms ease-in-out infinite;
+}
+
+.avatar-personagem--andando .avatar-personagem__braco--direito {
+  animation: balancarBracoDireito 520ms ease-in-out infinite;
+}
+
+.avatar-personagem--andando .avatar-personagem__perna--esquerda {
+  animation: passoEsquerdo 520ms ease-in-out infinite;
+}
+
+.avatar-personagem--andando .avatar-personagem__perna--direita {
+  animation: passoDireito 520ms ease-in-out infinite;
+}
+
+.avatar-personagem--acenando .avatar-personagem__braco--direito,
+.avatar-personagem--cumprimentando .avatar-personagem__braco--direito {
+  animation: acenarBraco 620ms ease-in-out infinite;
+}
+
+.avatar-personagem--acenando .avatar-personagem__cabeca,
+.avatar-personagem--cumprimentando .avatar-personagem__cabeca {
+  animation: cabecaCumprimento 620ms ease-in-out infinite;
+}
+
+.avatar-personagem--palmas .avatar-personagem__braco--esquerdo {
+  animation: baterPalmasEsquerda 420ms ease-in-out infinite;
+}
+
+.avatar-personagem--palmas .avatar-personagem__braco--direito {
+  animation: baterPalmasDireita 420ms ease-in-out infinite;
+}
+
+.avatar-personagem--palmas .avatar-personagem__silhueta {
+  animation: pularPalmas 420ms ease-in-out infinite;
+}
+
+.avatar-personagem--dancando .avatar-personagem__corpo,
+.avatar-personagem--comemorando .avatar-personagem__corpo {
+  animation: dancarCorpo 560ms ease-in-out infinite;
+}
+
+.avatar-personagem--dancando .avatar-personagem__cabeca,
+.avatar-personagem--comemorando .avatar-personagem__cabeca {
+  animation: dancarCorpo 680ms ease-in-out infinite reverse;
+}
+
+.avatar-personagem--dancando .avatar-personagem__braco--esquerdo {
+  animation: dancarBracoEsquerdo 560ms ease-in-out infinite;
+}
+
+.avatar-personagem--dancando .avatar-personagem__braco--direito {
+  animation: dancarBracoDireito 560ms ease-in-out infinite;
+}
+
+.avatar-personagem--comemorando .avatar-personagem__braco--esquerdo {
+  animation: comemorarBracoEsquerdo 620ms ease-in-out infinite;
+}
+
+.avatar-personagem--comemorando .avatar-personagem__braco--direito {
+  animation: comemorarBracoDireito 620ms ease-in-out infinite;
+}
+
+.avatar-personagem--emoji .avatar-personagem__cabeca {
+  animation: emojiCabeca 680ms ease-in-out infinite;
+}
+
+.avatar-personagem--coracao .avatar-personagem__coracao {
+  animation: pulsarCoracao 760ms ease-in-out infinite;
+}
+
+.avatar-personagem--coracao .avatar-personagem__silhueta {
+  animation: carinhoPersonagem 760ms ease-in-out infinite;
+}
+
+.avatar-personagem--coracao .avatar-personagem__braco--esquerdo {
+  animation: abracarEsquerdo 760ms ease-in-out infinite;
+}
+
+.avatar-personagem--coracao .avatar-personagem__braco--direito {
+  animation: abracarDireito 760ms ease-in-out infinite;
+}
+
+.avatar-personagem--sentado .avatar-personagem__corpo {
+  transform: translateY(9px) scaleY(0.9);
+}
+
+.avatar-personagem--sentado .avatar-personagem__pernas {
+  transform: translateY(8px) scaleY(0.72);
+}
+
+.avatar-personagem--sentado .avatar-personagem__braco {
+  transform: translateY(8px);
+}
+
+.avatar-personagem--sentado .avatar-personagem__cabeca {
+  animation: cabecaParada 2600ms ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-personagem *,
+  .personagem--local .personagem__nome,
+  .personagem__interacao {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .personagem {
+    width: 78px;
+    height: 122px;
+  }
+
+  .personagem__nome {
+    bottom: 88px;
+    max-width: 120px;
+  }
+
+  .personagem__mensagem {
+    bottom: 116px;
+    max-width: 132px;
+  }
+
+  .personagem__interacao {
+    bottom: 70px;
+  }
+
+  .avatar-personagem {
+    width: 62px;
+    height: 78px;
+  }
+}

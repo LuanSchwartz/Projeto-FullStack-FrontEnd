@@ -1,0 +1,140 @@
+.painel-interacoes {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 70;
+  width: min(340px, calc(100vw - 40px));
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(217, 222, 231, 0.92);
+  border-radius: var(--raio-medio);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--sombra-controle);
+  backdrop-filter: blur(14px);
+}
+
+.painel-interacoes__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.painel-interacoes__topo strong {
+  font-size: 0.98rem;
+}
+
+.painel-interacoes__topo span {
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgba(22, 163, 74, 0.12);
+  color: #166534;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.painel-interacoes__grade {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.painel-interacoes__botao,
+.painel-interacoes__linha button,
+.painel-interacoes__mensagens button {
+  min-height: 38px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font-weight: 800;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    transform 150ms ease;
+}
+
+.painel-interacoes__botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 0 10px;
+  font-size: 0.84rem;
+  overflow: hidden;
+}
+
+.painel-interacoes__botao span {
+  flex: 0 0 auto;
+  font-size: 1.05rem;
+}
+
+.painel-interacoes__botao:hover,
+.painel-interacoes__linha button:hover,
+.painel-interacoes__mensagens button:hover {
+  border-color: var(--cor-borda-forte);
+  background: var(--cor-superficie-suave);
+}
+
+.painel-interacoes__botao:disabled {
+  opacity: 0.48;
+}
+
+.painel-interacoes__linha {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.painel-interacoes__linha button {
+  font-size: 1.08rem;
+}
+
+.painel-interacoes__mensagens {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.painel-interacoes__mensagens button {
+  padding: 0 8px;
+  color: var(--cor-texto-suave);
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .painel-interacoes {
+    left: 12px;
+    right: 12px;
+    bottom: 134px;
+    width: auto;
+    max-height: 34svh;
+    overflow: auto;
+  }
+
+  .painel-interacoes__grade {
+    grid-template-columns: repeat(4, minmax(98px, 1fr));
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+}
+
+@media (max-width: 520px) {
+  .painel-interacoes {
+    bottom: 126px;
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .painel-interacoes__grade {
+    grid-template-columns: repeat(4, 104px);
+  }
+
+  .painel-interacoes__mensagens {
+    grid-template-columns: 1fr;
+  }
+}

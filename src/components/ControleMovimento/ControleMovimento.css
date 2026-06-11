@@ -1,0 +1,126 @@
+.controle-movimento {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  z-index: 70;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.controle-movimento__atalhos {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 5px 10px;
+  min-width: 210px;
+  padding: 12px;
+  border: 1px solid rgba(217, 222, 231, 0.92);
+  border-radius: var(--raio-medio);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--sombra-controle);
+  backdrop-filter: blur(14px);
+}
+
+.controle-movimento__atalhos strong {
+  color: var(--cor-texto);
+  font-size: 0.82rem;
+}
+
+.controle-movimento__atalhos span {
+  color: var(--cor-texto-suave);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.controle-movimento__direcional {
+  display: none;
+  grid-template-columns: repeat(3, 48px);
+  grid-template-rows: repeat(3, 48px);
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid rgba(217, 222, 231, 0.92);
+  border-radius: var(--raio-medio);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--sombra-controle);
+  touch-action: none;
+}
+
+.controle-movimento__botao {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pequeno);
+  background: var(--cor-superficie);
+  color: var(--cor-texto);
+  font-size: 1.3rem;
+  font-weight: 900;
+  line-height: 1;
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    transform 140ms ease;
+}
+
+.controle-movimento__botao:active {
+  transform: scale(0.96);
+  border-color: var(--cor-primaria);
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.controle-movimento__botao--cima {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.controle-movimento__botao--esquerda {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.controle-movimento__botao--baixo {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.controle-movimento__botao--direita {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+@media (max-width: 860px) {
+  .controle-movimento {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    justify-content: space-between;
+  }
+
+  .controle-movimento__atalhos {
+    min-width: 0;
+    width: min(44vw, 220px);
+    align-self: stretch;
+    align-content: center;
+  }
+
+  .controle-movimento__direcional {
+    display: grid;
+  }
+}
+
+@media (max-width: 440px) {
+  .controle-movimento__atalhos {
+    grid-template-columns: 1fr;
+    gap: 3px;
+    width: min(38vw, 154px);
+  }
+
+  .controle-movimento__direcional {
+    grid-template-columns: repeat(3, 44px);
+    grid-template-rows: repeat(3, 44px);
+  }
+
+  .controle-movimento__botao {
+    width: 44px;
+    height: 44px;
+  }
+}

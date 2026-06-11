@@ -1,0 +1,22 @@
+:root {
+  --cor-fundo: #f6f7f9;
+  --cor-fundo-mapa: #eef7f0;
+  --cor-superficie: #ffffff;
+  --cor-superficie-suave: #f9fafb;
+  --cor-texto: #111827;
+  --cor-texto-suave: #4b5563;
+  --cor-borda: #d9dee7;
+  --cor-borda-forte: #c7cfdb;
+  --cor-primaria: #2563eb;
+  --cor-primaria-escura: #1d4ed8;
+  --cor-verde: #16a34a;
+  --cor-amarela: #f59e0b;
+  --cor-rosa: #e11d48;
+  --cor-roxa: #7c3aed;
+  --sombra-suave: 0 18px 48px rgba(17, 24, 39, 0.12);
+  --sombra-controle: 0 12px 32px rgba(17, 24, 39, 0.14);
+  --raio-pequeno: 8px;
+  --raio-medio: 12px;
+  --raio-grande: 18px;
+  --altura-barra: 64px;
+}

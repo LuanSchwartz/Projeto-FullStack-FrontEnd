@@ -1,0 +1,159 @@
+.mundo {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 92px 18px 20px;
+}
+
+.mundo__janela {
+  position: relative;
+  width: min(100%, calc((100svh - 128px) * 1.714));
+  max-height: calc(100svh - 128px);
+  aspect-ratio: 12 / 7;
+  overflow: hidden;
+  border: 1px solid var(--cor-borda-forte);
+  border-radius: var(--raio-grande);
+  background:
+    radial-gradient(circle at 22% 24%, rgba(245, 158, 11, 0.16), transparent 12%),
+    radial-gradient(circle at 72% 66%, rgba(37, 99, 235, 0.12), transparent 14%),
+    var(--cor-fundo-mapa);
+  box-shadow: var(--sombra-suave);
+}
+
+.mundo__gramado,
+.mundo__caminho,
+.mundo__lago,
+.mundo__jardim,
+.mundo__banco {
+  position: absolute;
+  pointer-events: none;
+}
+
+.mundo__gramado {
+  border: 1px solid rgba(22, 163, 74, 0.22);
+  background: rgba(22, 163, 74, 0.09);
+}
+
+.mundo__gramado--esquerda {
+  left: 5%;
+  top: 13%;
+  width: 24%;
+  height: 30%;
+  border-radius: 38% 62% 44% 56%;
+}
+
+.mundo__gramado--direita {
+  right: 7%;
+  bottom: 13%;
+  width: 26%;
+  height: 32%;
+  border-radius: 55% 45% 58% 42%;
+}
+
+.mundo__caminho {
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(199, 207, 219, 0.72);
+}
+
+.mundo__caminho--horizontal {
+  left: 0;
+  top: 49%;
+  width: 100%;
+  height: 12%;
+}
+
+.mundo__caminho--vertical {
+  left: 46%;
+  top: 0;
+  width: 9%;
+  height: 100%;
+}
+
+.mundo__lago {
+  right: 10%;
+  top: 14%;
+  width: 16%;
+  height: 18%;
+  border: 1px solid rgba(8, 145, 178, 0.32);
+  border-radius: 50%;
+  background: rgba(8, 145, 178, 0.16);
+}
+
+.mundo__jardim {
+  width: 10%;
+  height: 8%;
+  border-radius: 999px;
+  border: 1px solid rgba(225, 29, 72, 0.24);
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(225, 29, 72, 0.16) 0 10px,
+    rgba(245, 158, 11, 0.18) 10px 20px
+  );
+}
+
+.mundo__jardim--um {
+  left: 13%;
+  bottom: 18%;
+}
+
+.mundo__jardim--dois {
+  right: 34%;
+  top: 19%;
+}
+
+.mundo__banco {
+  width: 9%;
+  height: 3%;
+  min-width: 54px;
+  border-radius: 999px;
+  background: #6b4e3d;
+  box-shadow: 0 9px 0 rgba(107, 78, 61, 0.24);
+}
+
+.mundo__banco--um {
+  left: 31%;
+  top: 34%;
+}
+
+.mundo__banco--dois {
+  right: 23%;
+  bottom: 35%;
+}
+
+.mundo__legenda {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  z-index: 40;
+  display: inline-flex;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.mundo__legenda span {
+  padding: 8px 10px;
+  border: 1px solid rgba(217, 222, 231, 0.9);
+  border-radius: var(--raio-pequeno);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--cor-texto-suave);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .mundo {
+    align-items: flex-start;
+    padding: 84px 10px 230px;
+  }
+
+  .mundo__janela {
+    width: 100%;
+    max-height: none;
+  }
+
+  .mundo__legenda {
+    display: none;
+  }
+}
