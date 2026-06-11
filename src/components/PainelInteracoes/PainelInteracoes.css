@@ -138,12 +138,13 @@
 
 @media (max-width: 860px) {
   .painel-interacoes {
-    order: 2;
-    position: relative;
-    right: auto;
+    position: absolute;
+    top: calc(var(--altura-barra) + 16px);
+    left: 8px;
+    right: 8px;
     bottom: auto;
     z-index: var(--camada-hud);
-    width: 100%;
+    width: auto;
     max-height: none;
     gap: 7px;
     padding: 9px;
