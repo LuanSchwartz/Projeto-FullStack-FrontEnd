@@ -12,6 +12,7 @@
 .personagem__mensagem,
 .personagem__interacao {
   position: absolute;
+  z-index: var(--camada-avatar-balao);
   left: 50%;
   max-width: 160px;
   transform: translateX(-50%);
@@ -49,6 +50,7 @@
 }
 
 .personagem__interacao {
+  z-index: var(--camada-avatar-reacao);
   bottom: 78px;
   padding: 5px 9px;
   border-radius: 999px;
@@ -68,6 +70,7 @@
 
 .avatar-personagem {
   position: absolute;
+  z-index: var(--camada-avatar);
   left: 50%;
   bottom: 0;
   overflow: visible;

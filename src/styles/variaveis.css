@@ -19,4 +19,12 @@
   --raio-medio: 12px;
   --raio-grande: 18px;
   --altura-barra: 64px;
+  --camada-mundo: 1;
+  --camada-mapa: 1;
+  --camada-mapa-overlay: 20;
+  --camada-hud: 70;
+  --camada-barra: 80;
+  --camada-avatar: 1;
+  --camada-avatar-balao: 4;
+  --camada-avatar-reacao: 5;
 }

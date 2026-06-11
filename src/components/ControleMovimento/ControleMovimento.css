@@ -2,7 +2,7 @@
   position: absolute;
   left: 20px;
   bottom: 20px;
-  z-index: 70;
+  z-index: var(--camada-hud);
   display: flex;
   align-items: flex-end;
   gap: 12px;
@@ -100,7 +100,7 @@
 @media (max-width: 860px) {
   .controle-movimento {
     position: relative;
-    z-index: 30;
+    z-index: var(--camada-hud);
     left: auto;
     right: auto;
     bottom: auto;
@@ -116,7 +116,7 @@
   .controle-movimento__direcional {
     display: grid;
     grid-template-columns: repeat(3, 52px);
-    grid-template-rows: repeat(3, 52px);
+    grid-template-rows: repeat(2, 52px);
     gap: 7px;
   }
 
@@ -129,7 +129,7 @@
 @media (max-width: 440px) {
   .controle-movimento__direcional {
     grid-template-columns: repeat(3, 44px);
-    grid-template-rows: repeat(3, 44px);
+    grid-template-rows: repeat(2, 44px);
     gap: 6px;
     padding: 7px;
   }

@@ -1,6 +1,6 @@
 .mundo {
   position: relative;
-  z-index: 1;
+  z-index: var(--camada-mundo);
   min-height: 100svh;
   display: flex;
   align-items: center;
@@ -10,7 +10,7 @@
 
 .mundo__janela {
   position: relative;
-  z-index: 1;
+  z-index: var(--camada-mapa);
   isolation: isolate;
   width: min(100%, calc((100svh - 128px) * 1.714));
   max-height: calc(100svh - 128px);
@@ -129,7 +129,7 @@
   position: absolute;
   left: 50%;
   bottom: 22px;
-  z-index: 40;
+  z-index: var(--camada-mapa-overlay);
   display: inline-flex;
   gap: 8px;
   transform: translateX(-50%);
@@ -148,6 +148,7 @@
 
 @media (max-width: 860px) {
   .mundo {
+    height: clamp(250px, 42svh, 340px);
     min-height: auto;
     align-items: flex-start;
     padding: 0;
@@ -155,7 +156,10 @@
 
   .mundo__janela {
     width: 100%;
+    height: 100%;
     max-height: none;
+    aspect-ratio: auto;
+    border-radius: 18px;
   }
 
   .mundo__legenda {

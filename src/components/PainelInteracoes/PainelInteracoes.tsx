@@ -49,8 +49,8 @@ export function PainelInteracoes({
               onClick={() => enviarInteracao(interacao.tipo)}
               title={desabilitado ? "Aproxime-se de alguem" : interacao.texto}
             >
-              <span>{interacao.icone}</span>
-              {interacao.texto}
+              <span className="painel-interacoes__icone">{interacao.icone}</span>
+              <span className="painel-interacoes__texto">{interacao.texto}</span>
             </motion.button>
           );
         })}

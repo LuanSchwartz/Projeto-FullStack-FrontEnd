@@ -16,9 +16,9 @@
     min-height: 100svh;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     overflow-y: auto;
-    padding: 10px 10px calc(12px + env(safe-area-inset-bottom));
+    padding: 8px 8px calc(10px + env(safe-area-inset-bottom));
   }
 }
 
