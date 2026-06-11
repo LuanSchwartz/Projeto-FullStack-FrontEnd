@@ -29,6 +29,7 @@
 
 .tela-inicial__rotulo,
 .tela-inicial__texto,
+.tela-inicial__status,
 .tela-inicial__erro,
 .tela-inicial h1 {
   margin: 0;
@@ -73,6 +74,17 @@
 
 .tela-inicial__formulario input::placeholder {
   color: #9ca3af;
+}
+
+.tela-inicial__formulario input:disabled {
+  background: #f8fafc;
+  color: var(--cor-texto-suave);
+}
+
+.tela-inicial__status {
+  color: var(--cor-texto-suave);
+  font-size: 0.92rem;
+  font-weight: 700;
 }
 
 .tela-inicial__erro {

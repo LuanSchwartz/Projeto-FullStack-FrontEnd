@@ -2,11 +2,24 @@
   position: relative;
   min-height: 100svh;
   overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
   background:
     linear-gradient(90deg, rgba(17, 24, 39, 0.035) 1px, transparent 1px),
     linear-gradient(rgba(17, 24, 39, 0.035) 1px, transparent 1px),
     var(--cor-fundo);
   background-size: 34px 34px;
+}
+
+@media (max-width: 860px) {
+  .aplicacao-jogo {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    padding: 10px 10px calc(12px + env(safe-area-inset-bottom));
+  }
 }
 
 .pagina-celular {

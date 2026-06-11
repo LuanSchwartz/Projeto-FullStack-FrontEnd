@@ -6,7 +6,11 @@ export type SocketJogo = Socket<EventosServidorCliente, EventosClienteServidor>;
 export function criarSocketJogo(): SocketJogo {
   return io(obterEnderecoBackend(), {
     autoConnect: false,
-    transports: ["websocket", "polling"]
+    transports: ["websocket", "polling"],
+    reconnectionAttempts: 8,
+    reconnectionDelay: 600,
+    reconnectionDelayMax: 1800,
+    timeout: 6000
   });
 }
 

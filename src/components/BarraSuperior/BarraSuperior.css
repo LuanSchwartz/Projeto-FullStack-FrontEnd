@@ -80,11 +80,13 @@
   font-weight: 700;
 }
 
-@media (max-width: 620px) {
+@media (max-width: 860px) {
   .barra-superior {
+    position: sticky;
     top: 10px;
-    left: 10px;
-    right: 10px;
+    left: auto;
+    right: auto;
+    width: 100%;
     grid-template-columns: minmax(0, 1fr) auto;
   }
 

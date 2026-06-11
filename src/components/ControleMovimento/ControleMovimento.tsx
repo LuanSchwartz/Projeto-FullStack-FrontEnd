@@ -1,5 +1,6 @@
 "use client";
 
+import type { PointerEvent } from "react";
 import type { EntradaMovimento } from "@/types/jogo";
 import { movimentoInicial } from "@/utils/constantesJogo";
 
@@ -15,11 +16,19 @@ const movimentosPorDirecao: Record<keyof EntradaMovimento, EntradaMovimento> = {
 };
 
 export function ControleMovimento({ atualizarMovimento }: PropriedadesControleMovimento) {
-  function iniciarMovimento(direcao: keyof EntradaMovimento) {
+  function iniciarMovimento(evento: PointerEvent<HTMLButtonElement>, direcao: keyof EntradaMovimento) {
+    evento.preventDefault();
+    evento.currentTarget.setPointerCapture(evento.pointerId);
     atualizarMovimento(movimentosPorDirecao[direcao]);
   }
 
-  function pararMovimento() {
+  function pararMovimento(evento?: PointerEvent<HTMLButtonElement>) {
+    evento?.preventDefault();
+
+    if (evento?.currentTarget.hasPointerCapture(evento.pointerId)) {
+      evento.currentTarget.releasePointerCapture(evento.pointerId);
+    }
+
     atualizarMovimento(movimentoInicial);
   }
 
@@ -37,10 +46,11 @@ export function ControleMovimento({ atualizarMovimento }: PropriedadesControleMo
           className="controle-movimento__botao controle-movimento__botao--cima"
           type="button"
           aria-label="Mover para cima"
-          onPointerDown={() => iniciarMovimento("cima")}
+          draggable={false}
+          onPointerDown={(evento) => iniciarMovimento(evento, "cima")}
           onPointerUp={pararMovimento}
           onPointerCancel={pararMovimento}
-          onPointerLeave={pararMovimento}
+          onLostPointerCapture={() => atualizarMovimento(movimentoInicial)}
         >
           ↑
         </button>
@@ -48,10 +58,11 @@ export function ControleMovimento({ atualizarMovimento }: PropriedadesControleMo
           className="controle-movimento__botao controle-movimento__botao--esquerda"
           type="button"
           aria-label="Mover para esquerda"
-          onPointerDown={() => iniciarMovimento("esquerda")}
+          draggable={false}
+          onPointerDown={(evento) => iniciarMovimento(evento, "esquerda")}
           onPointerUp={pararMovimento}
           onPointerCancel={pararMovimento}
-          onPointerLeave={pararMovimento}
+          onLostPointerCapture={() => atualizarMovimento(movimentoInicial)}
         >
           ←
         </button>
@@ -59,10 +70,11 @@ export function ControleMovimento({ atualizarMovimento }: PropriedadesControleMo
           className="controle-movimento__botao controle-movimento__botao--baixo"
           type="button"
           aria-label="Mover para baixo"
-          onPointerDown={() => iniciarMovimento("baixo")}
+          draggable={false}
+          onPointerDown={(evento) => iniciarMovimento(evento, "baixo")}
           onPointerUp={pararMovimento}
           onPointerCancel={pararMovimento}
-          onPointerLeave={pararMovimento}
+          onLostPointerCapture={() => atualizarMovimento(movimentoInicial)}
         >
           ↓
         </button>
@@ -70,10 +82,11 @@ export function ControleMovimento({ atualizarMovimento }: PropriedadesControleMo
           className="controle-movimento__botao controle-movimento__botao--direita"
           type="button"
           aria-label="Mover para direita"
-          onPointerDown={() => iniciarMovimento("direita")}
+          draggable={false}
+          onPointerDown={(evento) => iniciarMovimento(evento, "direita")}
           onPointerUp={pararMovimento}
           onPointerCancel={pararMovimento}
-          onPointerLeave={pararMovimento}
+          onLostPointerCapture={() => atualizarMovimento(movimentoInicial)}
         >
           →
         </button>

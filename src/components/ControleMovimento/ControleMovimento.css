@@ -6,6 +6,9 @@
   display: flex;
   align-items: flex-end;
   gap: 12px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .controle-movimento__atalhos {
@@ -43,6 +46,9 @@
   background: rgba(255, 255, 255, 0.94);
   box-shadow: var(--sombra-controle);
   touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .controle-movimento__botao {
@@ -55,6 +61,10 @@
   font-size: 1.3rem;
   font-weight: 900;
   line-height: 1;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
   transition:
     background-color 140ms ease,
     border-color 140ms ease,
@@ -89,34 +99,39 @@
 
 @media (max-width: 860px) {
   .controle-movimento {
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-    justify-content: space-between;
+    position: relative;
+    z-index: 30;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    transform: none;
+    width: 100%;
+    justify-content: center;
   }
 
   .controle-movimento__atalhos {
-    min-width: 0;
-    width: min(44vw, 220px);
-    align-self: stretch;
-    align-content: center;
+    display: none;
   }
 
   .controle-movimento__direcional {
     display: grid;
+    grid-template-columns: repeat(3, 52px);
+    grid-template-rows: repeat(3, 52px);
+    gap: 7px;
+  }
+
+  .controle-movimento__botao {
+    width: 52px;
+    height: 52px;
   }
 }
 
 @media (max-width: 440px) {
-  .controle-movimento__atalhos {
-    grid-template-columns: 1fr;
-    gap: 3px;
-    width: min(38vw, 154px);
-  }
-
   .controle-movimento__direcional {
     grid-template-columns: repeat(3, 44px);
     grid-template-rows: repeat(3, 44px);
+    gap: 6px;
+    padding: 7px;
   }
 
   .controle-movimento__botao {

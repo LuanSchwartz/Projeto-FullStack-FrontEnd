@@ -49,7 +49,11 @@ export function TelaInicial({ conectando, erro, entrarNoMundo }: PropriedadesTel
             maxLength={24}
             placeholder="Digite seu nome"
             autoComplete="name"
+            disabled={conectando}
           />
+          {conectando && !erro && (
+            <p className="tela-inicial__status">Conectando ao servidor. Isso pode levar alguns segundos...</p>
+          )}
           {erro && <p className="tela-inicial__erro">{erro}</p>}
           <button className="botao botao--primario" type="submit" disabled={conectando}>
             {conectando ? "Entrando..." : "Entrar"}

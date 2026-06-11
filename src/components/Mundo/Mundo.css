@@ -1,4 +1,6 @@
 .mundo {
+  position: relative;
+  z-index: 1;
   min-height: 100svh;
   display: flex;
   align-items: center;
@@ -8,6 +10,8 @@
 
 .mundo__janela {
   position: relative;
+  z-index: 1;
+  isolation: isolate;
   width: min(100%, calc((100svh - 128px) * 1.714));
   max-height: calc(100svh - 128px);
   aspect-ratio: 12 / 7;
@@ -144,8 +148,9 @@
 
 @media (max-width: 860px) {
   .mundo {
+    min-height: auto;
     align-items: flex-start;
-    padding: 84px 10px 230px;
+    padding: 0;
   }
 
   .mundo__janela {

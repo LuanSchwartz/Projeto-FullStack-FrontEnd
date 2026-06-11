@@ -19,6 +19,8 @@ import type {
 } from "@/types/jogo";
 import { limitesMundoPadrao, movimentoInicial } from "@/utils/constantesJogo";
 
+const tempoLimiteConexaoMs = 12000;
+
 interface ValorContextoJogo {
   jogadorId: string | null;
   jogadores: Jogador[];
@@ -38,12 +40,20 @@ const ContextoJogo = createContext<ValorContextoJogo | null>(null);
 
 export function ProvedorJogo({ children }: { children: ReactNode }) {
   const socketRef = useRef<SocketJogo | null>(null);
+  const temporizadorErroConexaoRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [jogadorId, definirJogadorId] = useState<string | null>(null);
   const [jogadores, definirJogadores] = useState<Jogador[]>([]);
   const [limitesMundo, definirLimitesMundo] = useState<LimitesMundo>(limitesMundoPadrao);
   const [conectado, definirConectado] = useState(false);
   const [conectando, definirConectando] = useState(false);
   const [erro, definirErro] = useState<string | null>(null);
+
+  const limparTemporizadorErroConexao = useCallback(() => {
+    if (temporizadorErroConexaoRef.current) {
+      clearTimeout(temporizadorErroConexaoRef.current);
+      temporizadorErroConexaoRef.current = null;
+    }
+  }, []);
 
   const atualizarJogador = useCallback((jogadorAtualizado: Jogador) => {
     definirJogadores((jogadoresAtuais) => {
@@ -83,18 +93,42 @@ export function ProvedorJogo({ children }: { children: ReactNode }) {
   const registrarEventos = useCallback(
     (socket: SocketJogo) => {
       socket.on("connect", () => {
+        if (socketRef.current !== socket) {
+          return;
+        }
+
+        limparTemporizadorErroConexao();
         definirConectado(true);
         definirConectando(false);
         definirErro(null);
       });
 
       socket.on("connect_error", () => {
-        definirConectando(false);
+        if (socketRef.current !== socket || temporizadorErroConexaoRef.current) {
+          return;
+        }
+
         definirConectado(false);
-        definirErro("Nao foi possivel conectar ao servidor. Confira se o backend esta rodando.");
+        definirConectando(true);
+        temporizadorErroConexaoRef.current = setTimeout(() => {
+          if (socketRef.current !== socket || socket.connected) {
+            return;
+          }
+
+          socket.disconnect();
+          socketRef.current = null;
+          temporizadorErroConexaoRef.current = null;
+          definirConectando(false);
+          definirConectado(false);
+          definirErro("Nao foi possivel entrar agora. Aguarde o backend terminar de carregar e tente novamente.");
+        }, tempoLimiteConexaoMs);
       });
 
       socket.on("disconnect", () => {
+        if (socketRef.current !== socket) {
+          return;
+        }
+
         definirConectado(false);
       });
 
@@ -152,7 +186,7 @@ export function ProvedorJogo({ children }: { children: ReactNode }) {
         );
       });
     },
-    [aplicarInteracaoVisual, atualizarJogador]
+    [aplicarInteracaoVisual, atualizarJogador, limparTemporizadorErroConexao]
   );
 
   const entrarNoMundo = useCallback(
@@ -165,6 +199,9 @@ export function ProvedorJogo({ children }: { children: ReactNode }) {
 
       definirConectando(true);
       definirErro(null);
+      definirJogadorId(null);
+      limparTemporizadorErroConexao();
+      socketRef.current?.disconnect();
 
       const socket = criarSocketJogo();
       socketRef.current = socket;
@@ -174,10 +211,11 @@ export function ProvedorJogo({ children }: { children: ReactNode }) {
         socket.emit("conexao", { nome: nomeLimpo });
       });
     },
-    [registrarEventos]
+    [limparTemporizadorErroConexao, registrarEventos]
   );
 
   const sairDoMundo = useCallback(() => {
+    limparTemporizadorErroConexao();
     socketRef.current?.emit("movimentacao", movimentoInicial);
     socketRef.current?.disconnect();
     socketRef.current = null;
@@ -185,7 +223,7 @@ export function ProvedorJogo({ children }: { children: ReactNode }) {
     definirJogadores([]);
     definirConectado(false);
     definirConectando(false);
-  }, []);
+  }, [limparTemporizadorErroConexao]);
 
   const atualizarMovimento = useCallback((movimento: EntradaMovimento) => {
     socketRef.current?.emit("movimentacao", movimento);
@@ -205,9 +243,10 @@ export function ProvedorJogo({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     return () => {
+      limparTemporizadorErroConexao();
       socketRef.current?.disconnect();
     };
-  }, []);
+  }, [limparTemporizadorErroConexao]);
 
   const valor = useMemo<ValorContextoJogo>(
     () => ({
